@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+- 2.1.2
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: bBaE5UhMkI1wcs0k/WFe7/Po2NaRGoFdl29/wzSIn0PNXfDw4rg60i75aSc+/0+8BZMiFz62HKS94gVeqG+aM/Z6I+j2CBwHb3jMlBl2mQF2C/M1BoB06QRJg2Z7vq0rpimUNN7sTBrNPKoodxUGR5HSUwfcq8jJxbUQ29ZF9HU=
+  app: damp-plains-9583
+  on:
+    repo: MutsumiAbe/rails_enpit
+    branch: travis
+
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  -cp config/database.yml.travis config/database.yml
